@@ -1,35 +1,94 @@
-# default k= 0
+from math import factorial
 
 class Formulas():
-    def __init__(self, Y: int, avgArrivalRate: float, avgServiceRate: float, k: int = 0):
+    def __init__(self, Y: int, arrivalRate: float, serviceRate: float, state: int = 0):
         self.Y = Y
-        self.avgArrivalRate = avgArrivalRate # lambda
-        self.avgServiceRate = avgServiceRate # mu
-        self.k = k
+        self.arrivalRate = arrivalRate # lambda
+        self.serviceRate = serviceRate # mu
+        self.state = state # k
         
-    # GETTERS & SETTERS
+    # GETTERS
     
     def getY(self):
         return self.Y
     
-    def getavgArrivalRate(self):
-        return self.avgArrivalRate
+    def getArrivalRate(self):
+        return self.arrivalRate
     
-    def getavgServiceRate(self):
-        return self.avgServiceRate
+    def getServiceRate(self):
+        return self.serviceRate
+    
+    def getState(self):
+        return self.state
+    
+    # SETTERS
     
     def setY(self, Y: int):
         self.Y = Y
     
-    def setavgArrivalRate(self, avgArrivalRate: float):
-        self.avgArrivalRate = avgArrivalRate
+    def setArrivalRate(self, arrivalRate: float):
+        self.arrivalRate = arrivalRate
     
-    def setavgServiceRate(self, avgServiceRate: float):
-        self.avgServiceRate = avgServiceRate
+    def setServiceRate(self, serviceRate: float):
+        self.serviceRate = serviceRate
+        
+    def setState(self, state: int):
+        self.state = state
         
     # FORMULAS
     
-    # return the traffic intensity (A)
+    # returns A
     def getTrafficIntensity(self):
-        return self.avgArrivalRate / self.avgServiceRate
+        return self.arrivalRate / self.serviceRate
     
+    # returns LambdaK (0 if state > Y)
+    def getArrivalRateAtState(self, state: int):
+        if state <= self.getY():
+            return self.getArrivalRate
+        
+        return 0
+    
+    # returns MuK
+    def getServiceRateAtState(self, state: int):
+        return state * self.getServiceRate()
+    
+    # returns Pk (0 if state > Y)
+    def getProbabilityAtState(self, state: int):
+        if state <= self.getY():
+            return (self.getProbabilityAtStateZero()
+                    * pow(self.getTrafficIntensity(), state)
+                    / factorial(state))
+            
+        return 0
+    
+    # returns P0
+    def getProbabilityAtStateZero(self):
+        sum = 0
+        for i in range(0, self.getY() + 1):
+            sum += pow(self.getTrafficIntensity(), i) / factorial(i)
+            
+        return pow(sum, -1)
+    
+    # returns PY (P{block})
+    def getProbabilityAtStateY(self):
+        return self.getProbabilityAtState(self.getY())
+        
+    # returns Lq
+    def getQueueLength():
+        return 0
+    
+    # returns Wq
+    def getQueueWait():
+        return 0
+    
+    # returns Ls
+    def getServerLength(self):
+        return self.getTrafficIntensity() * (1 - self.getProbabilityAtStateY())
+    
+    # returns Ws
+    def getServerWait(self):
+        return 1 / self.getServiceRate()
+
+f = Formulas(4, 7, 8.5, 4)
+
+print(f.getProbabilityAtStateZero())
