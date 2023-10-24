@@ -1,9 +1,11 @@
+# default k= 0
 
 class Formulas():
-    def __init__(self, Y: int, avgArrivalRate: float, avgServiceRate: float):
+    def __init__(self, Y: int, avgArrivalRate: float, avgServiceRate: float, k: int = 0):
         self.Y = Y
         self.avgArrivalRate = avgArrivalRate # lambda
         self.avgServiceRate = avgServiceRate # mu
+        self.k = k
         
     # GETTERS & SETTERS
     
