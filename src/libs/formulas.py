@@ -1,4 +1,5 @@
 from math import factorial
+from graphs import Graphs
 
 class Formulas():
     def __init__(self, Y: int, arrivalRate: float, serviceRate: float, state: int = 0):
@@ -43,18 +44,18 @@ class Formulas():
     
     # returns LambdaK (0 if state > Y)
     def getArrivalRateAtState(self, state: int):
-        if state <= self.getY():
-            return self.getArrivalRate
+        if state <= self.Y:
+            return self.arrivalRate
         
         return 0
     
     # returns MuK
     def getServiceRateAtState(self, state: int):
-        return state * self.getServiceRate()
+        return state * self.serviceRate
     
     # returns Pk (0 if state > Y)
     def getProbabilityAtState(self, state: int):
-        if state <= self.getY():
+        if state <= self.Y:
             return (self.getProbabilityAtStateZero()
                     * pow(self.getTrafficIntensity(), state)
                     / factorial(state))
@@ -64,14 +65,14 @@ class Formulas():
     # returns P0
     def getProbabilityAtStateZero(self):
         sum = 0
-        for i in range(0, self.getY() + 1):
+        for i in range(0, self.Y + 1):
             sum += pow(self.getTrafficIntensity(), i) / factorial(i)
             
         return pow(sum, -1)
     
     # returns PY (P{block})
     def getProbabilityAtStateY(self):
-        return self.getProbabilityAtState(self.getY())
+        return self.getProbabilityAtState(self.Y)
         
     # returns Lq
     def getQueueLength():
@@ -87,8 +88,11 @@ class Formulas():
     
     # returns Ws
     def getServerWait(self):
-        return 1 / self.getServiceRate()
+        return 1 / self.serviceRate
 
-f = Formulas(4, 7, 8.5, 4)
+f = Formulas(4, 2222, 22222, 4)
+g = Graphs()
 
-print(f.getProbabilityAtStateZero())
+print(f.getTrafficIntensity())
+print(f.getServerLength())
+g.getGraph()
