@@ -1,11 +1,14 @@
 from math import factorial
 
 class Formulas():
-    def __init__(self, Y: int, arrivalRate: float, serviceRate: float, state: int = 0):
+    def __init__(self, Y: int, arrivalRate: float, serviceRate: float):
         self.Y = Y
         self.arrivalRate = arrivalRate # lambda
         self.serviceRate = serviceRate # mu
-        self.state = state # k
+        
+        # backups for simulation
+        self.backupArrivalRate = arrivalRate # backup lambda
+        self.backupServiceRate = serviceRate # backup mu
         
     # GETTERS
     
@@ -18,9 +21,6 @@ class Formulas():
     def getServiceRate(self):
         return self.serviceRate
     
-    def getState(self):
-        return self.state
-    
     # SETTERS
     
     def setY(self, Y: int):
@@ -32,8 +32,11 @@ class Formulas():
     def setServiceRate(self, serviceRate: float):
         self.serviceRate = serviceRate
         
-    def setState(self, state: int):
-        self.state = state
+    # UTILS
+    
+    def resetValues(self):
+        self.arrivalRate = self.backupArrivalRate
+        self.serviceRate = self.backupServiceRate
         
     # FORMULAS
     
@@ -88,4 +91,7 @@ class Formulas():
     # returns Ws
     def getServerWait(self):
         return 1 / self.serviceRate
-
+    
+    def runSimulation(self):
+        for state in range(0, self.getY() + 1):
+            
