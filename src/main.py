@@ -22,10 +22,10 @@ class Interface(ScreenManager):
 class QueuesystemApp(App):
     pass
 
-# QueuesystemApp().run()
+QueuesystemApp().run()
 
 # testing
-
+'''
 input = {
     "Y": 4,
     "arrivalRate": 10,
@@ -55,3 +55,5 @@ plt.xlabel("A")
 plt.ylabel("Ls")
 plt.savefig("img/testGraph.jpg")
 plt.show()
+
+'''

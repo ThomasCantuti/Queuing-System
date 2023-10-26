@@ -35,15 +35,16 @@ Builder.load_string("""
                     background_color: 0,0,0,0
                     on_press: root.goToData()
         BoxLayout:
-            ScrollView:
-                do_scroll_y: True
-                Label:
-                    id: placeholder
-                    color: root.secondary_color
-                    text_size: self.width, None
-                    size_hint_y: None
-                    height: self.texture_size[1]
-                    padding: [dp(20), dp(20)]
+            BoxLayout:
+                
+            BoxLayout:
+                canvas.before:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: "img/testGraph.jpg"
+                
+                    
 
 """)
 
