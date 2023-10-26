@@ -1,6 +1,6 @@
 from math import factorial
 
-class Formulas():
+class self():
     def __init__(self, Y: int, arrivalRate: float, serviceRate: float):
         self.Y = Y
         self.arrivalRate = arrivalRate # lambda
@@ -38,7 +38,7 @@ class Formulas():
         self.arrivalRate = self.backupArrivalRate
         self.serviceRate = self.backupServiceRate
         
-    # FORMULAS
+    # self
     
     # returns A
     def getTrafficIntensity(self):
@@ -91,7 +91,3 @@ class Formulas():
     # returns Ws
     def getServerWait(self):
         return 1 / self.serviceRate
-    
-    def runSimulation(self):
-        for state in range(0, self.getY() + 1):
-            
