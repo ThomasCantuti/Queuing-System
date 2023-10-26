@@ -1,5 +1,4 @@
 from math import factorial
-from graphs import Graphs
 
 class Formulas():
     def __init__(self, Y: int, arrivalRate: float, serviceRate: float, state: int = 0):
@@ -90,9 +89,3 @@ class Formulas():
     def getServerWait(self):
         return 1 / self.serviceRate
 
-f = Formulas(4, 2222, 22222, 4)
-g = Graphs()
-
-print(f.getTrafficIntensity())
-print(f.getServerLength())
-g.getGraph()
