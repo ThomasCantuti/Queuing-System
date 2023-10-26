@@ -36,3 +36,5 @@ f = Formulas(input.get("Y"),
 
 for k in range(0, input.get("state") + 1):
     print("P(", k, ") =>", f.getServerLength())
+    
+    
