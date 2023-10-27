@@ -14,8 +14,8 @@ class Interface(ScreenManager):
         super().__init__(**kwargs)
         dataPage = DataPage()
         graphicPage = GraphicPage()
-        self.add_widget(dataPage)
         self.add_widget(graphicPage)
+        self.add_widget(dataPage)
 
 class QueuesystemApp(App):
     pass

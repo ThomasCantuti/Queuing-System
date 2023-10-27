@@ -1,6 +1,6 @@
 from math import factorial
 
-class self():
+class Formulas():
     def __init__(self, Y: int, arrivalRate: float, serviceRate: float):
         self.Y = Y
         self.arrivalRate = arrivalRate # lambda
