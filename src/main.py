@@ -20,10 +20,11 @@ class Interface(ScreenManager):
 class QueuesystemApp(App):
     pass
 
-<<<<<<< HEAD
 QueuesystemApp().run()
-=======
-# QueuesystemApp().run()
+
+'''
+
+# testing
 
 def runSimulation(Y: int, arrivalRate: float, serviceRate: float):
     input = {
@@ -36,8 +37,6 @@ def runSimulation(Y: int, arrivalRate: float, serviceRate: float):
                 input.get("arrivalRate"), 
                 input.get("serviceRate"))
     
-
-# testing
 
 # SAMPLE GRAPH
 # for i in range(0, 10 * f.getServiceRate()):
@@ -54,4 +53,4 @@ def runSimulation(Y: int, arrivalRate: float, serviceRate: float):
 # plt.ylabel("Ls")
 # plt.savefig("img/testGraph.jpg")
 # plt.show()
->>>>>>> 19ba79cb61e51c096e093d1618a579a961a1e7c9
+'''
