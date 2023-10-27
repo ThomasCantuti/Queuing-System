@@ -55,3 +55,4 @@ class DataPage(Screen):
 
     def goToGraphic(self):
         self.manager.current = "graphicPage"
+        
