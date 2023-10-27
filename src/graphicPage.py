@@ -1,6 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from styles import Styles
+from formulas import Formulas
 
 Builder.load_string("""
 <GraphicPage>:
@@ -35,14 +36,21 @@ Builder.load_string("""
                     background_color: 0,0,0,0
                     on_press: root.goToData()
         BoxLayout:
+            #orientation: "vertical"
+            canvas.before:
+                Color:
+                    rgba: root.secondary_color
             BoxLayout:
-                
+                Label:
+                    text: "input"
+
             BoxLayout:
                 canvas.before:
                     Rectangle:
                         pos: self.pos
                         size: self.size
                         source: "img/testGraph.jpg"
+            
                 
                     
 

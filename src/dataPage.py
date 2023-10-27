@@ -45,6 +45,7 @@ Builder.load_string("""
                     size_hint_y: None
                     height: self.texture_size[1]
                     padding: [dp(20), dp(20)]
+                    text: "prova"
 
 """)
 
