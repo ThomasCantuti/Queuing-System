@@ -6,8 +6,8 @@ class Styles:
     textinput_bg = rgba("#E8E6E6")
     text_title = rgba("#019ef")
     
-    primary_color = rgba("#181621")
-    secondary_color = rgba("#221f2e")
+    primary_color = rgba("#202b3b")
+    secondary_color = rgba("#2b3a4f")
     light_1_color = rgba("#F4F5F8")
     light_2_color = rgba("#B0B0B0")
     danger_color = rgba("#eb3434")

@@ -6,8 +6,8 @@ from graphicPage import GraphicPage
 import matplotlib.pyplot as plt
 import numpy as np
 
-from formulas import Formulas
-from graphs import Graphs
+from libs.formulas import Formulas
+from libs.graphs import Graphs
 from styles import Styles
 
 class Interface(ScreenManager):

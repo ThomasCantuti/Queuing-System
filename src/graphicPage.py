@@ -1,7 +1,7 @@
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from styles import Styles
-from formulas import Formulas
+from libs.formulas import Formulas
 
 Builder.load_string("""
 <GraphicPage>:

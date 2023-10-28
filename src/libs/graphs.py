@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-from formulas import Formulas
+from libs.formulas import Formulas
 from styles import Styles
 
 class Graphs():
