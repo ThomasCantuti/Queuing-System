@@ -6,8 +6,9 @@ from graphicPage import GraphicPage
 import matplotlib.pyplot as plt
 import numpy as np
 
-# from formulas import Formulas
-# from graphs import Graphs
+from formulas import Formulas
+from graphs import Graphs
+from styles import Styles
 
 class Interface(ScreenManager):
     def __init__(self, **kwargs):
@@ -22,35 +23,6 @@ class QueuesystemApp(App):
 
 QueuesystemApp().run()
 
-'''
-
-# testing
-
-def runSimulation(Y: int, arrivalRate: float, serviceRate: float):
-    input = {
-        "Y": Y,
-        "arrivalRate": arrivalRate,
-        "serviceRate": serviceRate
-    }
-
-    formulas = Formulas(input.get("Y"), 
-                input.get("arrivalRate"), 
-                input.get("serviceRate"))
-    
-
-# SAMPLE GRAPH
-# for i in range(0, 10 * f.getServiceRate()):
-#     f.setArrivalRate(i)
-#     print("A:", f.getTrafficIntensity(), "=> Ls:", f.getServerLength())
-    
-#     x = f.getTrafficIntensity()
-#     y = f.getServerLength()
-
-#     plt.plot(x, y, 'ro-')
-
-# plt.title("General Graph")
-# plt.xlabel("A")
-# plt.ylabel("Ls")
-# plt.savefig("img/testGraph.jpg")
-# plt.show()
-'''
+# graficone
+# graphs = Graphs(40)
+# graphs.createGeneralGraph()

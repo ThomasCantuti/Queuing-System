@@ -2,36 +2,57 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from formulas import Formulas
+from styles import Styles
 
 class Graphs():
-    def __init__(self):
-        pass
-
-    def drawGraph(self):
-
+    def __init__(self, xLength):        
         input = {
-            "Y": 4,
-            "arrivalRate": 10,
-            "serviceRate": 50,
-            "state": 4
+            "Y": 5,
+            "arrivalRate": 8,
+            "serviceRate": 18
         }
 
-        f = Formulas(input.get("Y"), 
-             input.get("arrivalRate"), 
-             input.get("serviceRate"), 
-             input.get("state"))
+        self.xLength = xLength
+        self.formulas = Formulas(input.get("Y"), 
+                    input.get("arrivalRate"), 
+                    input.get("serviceRate"))
         
-        for i in range(0, 10 * f.getServiceRate()):
-            f.setArrivalRate(i)
-            print("A:", f.getTrafficIntensity(), "=> Ls:", f.getServerLength())
+    def getXLength(self):
+        return self.xLength
+    
+    def setXLength(self, xLength):
+        self.xLength = xLength
+
+    def createGeneralGraph(self):
+        # graph surrounding bg color
+        plt.figure(facecolor=Styles.secondary_color)
+
+        ax = plt.axes()
+
+        # graph bg color
+        ax.set_facecolor(Styles.secondary_color)
+
+        # graph axis values color
+        ax.tick_params(axis='x', colors=Styles.light_2_color)
+        ax.tick_params(axis='y', colors=Styles.light_2_color)
+
+        # graph borders color
+        for i in ['bottom', 'top', 'left' , 'right']:
+            ax.spines[i].set_color(Styles.light_2_color)
+
+        # display points
+        for i in range(0, self.xLength * self.formulas.getServiceRate()):
+            self.formulas.setArrivalRate(i)
+            # print("A:", self.formulas.getTrafficIntensity(), "=> Ls:", self.formulas.getServerLength())
             
-            x = f.getTrafficIntensity()
-            y = f.getServerLength()
+            x = self.formulas.getTrafficIntensity()
+            y = self.formulas.getServerLength()
 
-            plt.plot(x, y, 'ro-')
+            # plt.plot(x, y, 'ro-')
+            plt.scatter(x, y, color=Styles.light_1_color)
 
-        plt.title("General Graph")
-        plt.xlabel("A")
-        plt.ylabel("Ls")
+        plt.title("General Graph",  fontweight='bold', color=Styles.light_1_color)
+        plt.xlabel("A", fontweight='bold', color=Styles.light_2_color)
+        plt.ylabel("Ls", fontweight='bold', color=Styles.light_2_color)
         plt.savefig("img/testGraph.jpg")
-        plt.show()
+        # plt.show()
