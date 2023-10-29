@@ -20,7 +20,7 @@ Builder.load_string("""
             height: dp(60)
             Label:
                 text: "Queue System M/M/Y/Y Graphic"
-                font_name: "robotoblack.ttf"
+                font_name: "DMSans.ttf"
                 font_size: "20sp"
             AnchorLayout:
                 anchor_x: "right"
@@ -41,7 +41,7 @@ Builder.load_string("""
         BoxLayout:
             canvas.before:
                 Color:
-                    rgba: root.secondary_color
+                    rgba: root.bg_color
                 Rectangle:
                     pos: self.pos
                     size: self.size
@@ -55,11 +55,13 @@ Builder.load_string("""
                     anchor_y: "top"
                     pos_hint: {'x' : 0, 'y' : 1}
                     Label:
-                        color: root.text_color
+                        font_name: "DMSans.ttf"
+                        font_size: 26
+                        color: root.text_color_1
                         text_size: self.width, None
                         anchor_x: "left"
                         #padding: [dp(20), dp(20)]
-                        text: "input"
+                        text: "Input"
                     TextInput:
                         id: lambda
                         padding: dp(15)
@@ -92,13 +94,15 @@ Builder.load_string("""
                     anchor_y: "top"
                     pos_hint: {'x' : 0, 'y' : 1}
                     Label:
-                        color: root.text_color
+                        font_name: "DMSans.ttf"
+                        font_size: 26
+                        color: root.text_color_1
                         text_size: self.width, None
                         anchor_x: "left"
                         anchor_y: "top"
                         size_hint_y: None
                         #padding: [dp(20), dp(20)]
-                        text: "output"
+                        text: "Output"
             
             # Destra -> Grafico
             AnchorLayout:
@@ -106,7 +110,7 @@ Builder.load_string("""
                 #padding: [0,0,dp(30),0]
                 canvas.before:
                     #Color:
-                    #    rgba: root.secondary_color
+                    #    rgba: root.bg_color
                     Rectangle:
                         pos: self.pos
                         size: self.size
@@ -120,7 +124,7 @@ Builder.load_string("""
 class GraphicPage(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
-    text_color = Styles.text_title
+    text_color_1 = Styles.light_1_color
 
 
     def goToData(self):
