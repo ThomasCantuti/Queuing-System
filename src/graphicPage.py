@@ -4,6 +4,11 @@ from styles import Styles
 from libs.formulas import Formulas
 
 Builder.load_string("""
+                    
+#: import CLabel CustomWidgets
+#: import TextParameter CustomWidgets
+#: import CTextInput CustomWidgets   
+                    
 <GraphicPage>:
     name: "graphicPage"
     BoxLayout:
@@ -37,7 +42,7 @@ Builder.load_string("""
                     background_color: 0,0,0,0
                     on_press: root.goToData()
         
-        # Sinistra -> Dati
+        # Dati + grafico
         BoxLayout:
             canvas.before:
                 Color:
@@ -45,64 +50,78 @@ Builder.load_string("""
                 Rectangle:
                     pos: self.pos
                     size: self.size
+            # Sinistra -> Dati
             BoxLayout:
-                anchor_x: "left"
-                anchor_y: "top"
-                padding: [dp(30),0,0,0]
                 orientation: "vertical"
                 # input
                 BoxLayout:
-                    anchor_y: "top"
-                    pos_hint: {'x' : 0, 'y' : 1}
-                    Label:
-                        font_name: "DMSans.ttf"
-                        font_size: 26
-                        color: root.text_color_1
-                        text_size: self.width, None
-                        anchor_x: "left"
-                        #padding: [dp(20), dp(20)]
+                    orientation: "vertical"
+                    CLabel:
                         text: "Input"
-                    TextInput:
-                        id: lambda
-                        padding: dp(15)
-                        size_hint_y: None
-                        height: dp(50)
-                        multiline: False
-                        hint_text: "lambda"
-                    TextInput:
-                        id: mu
-                        padding: dp(15)
-                        size_hint_y: None
-                        height: dp(50)
-                        multiline: False
-                        hint_text: "mu"
-                    TextInput:
-                        id: y
-                        padding: dp(15)
-                        size_hint_y: None
-                        height: dp(50)
-                        multiline: False
-                        hint_text: "y"
-                    Button:
-                        id: start
-                        text: "Start"
-                        size_hint_y: None
-                        height: dp(50)
-
+                    BoxLayout:
+                        padding: [dp(20), dp(20)]
+                        CTextInput:
+                            id: lambda
+                            hint_text: "lambda"
+                        CTextInput:
+                            id: mu
+                            hint_text: "mu"
+                        CTextInput:
+                            id: y
+                            hint_text: "y"
+                        CTextInput:
+                            id: state
+                            hint_text: "K"
+                    BoxLayout:
+                        padding: [dp(20), dp(20)]
+                        Button:
+                            id: start
+                            text: "Start"
+                            size_hint_y: None
+                            height: dp(50)
+                        Button:
+                            id: reset
+                            text: "Reset"
+                            size_hint_y: None
+                            height: dp(50)
                 # output
                 BoxLayout:
-                    anchor_y: "top"
-                    pos_hint: {'x' : 0, 'y' : 1}
-                    Label:
-                        font_name: "DMSans.ttf"
-                        font_size: 26
-                        color: root.text_color_1
-                        text_size: self.width, None
-                        anchor_x: "left"
-                        anchor_y: "top"
-                        size_hint_y: None
-                        #padding: [dp(20), dp(20)]
-                        text: "Output"
+                    orientation: "vertical"
+                    BoxLayout:
+                        CLabel:
+                            text: "Output"
+                    # Pk
+                    BoxLayout:
+                        size_hint_x: None
+                        CLabel:
+                            text: "Pk: "
+                        TextParameter:
+                            id: Pk
+                            text: ""
+                    # Py
+                    BoxLayout:
+                        size_hint_x: None
+                        CLabel:
+                            text: "Py: "
+                        TextParameter:
+                            id: Py
+                            text: ""
+                    # Ls
+                    BoxLayout:
+                        size_hint_x: None
+                        CLabel:
+                            text: "Ls: "
+                        TextParameter:
+                            id: Ls
+                            text: ""
+                    # Ws
+                    BoxLayout:
+                        size_hint_x: None
+                        CLabel:
+                            text: "Ws: "
+                        TextParameter:
+                            id: Ws
+                            #text: "p"
             
             # Destra -> Grafico
             AnchorLayout:
@@ -116,15 +135,17 @@ Builder.load_string("""
                         size: self.size
                         source: "img/testGraph.jpg"
             
-                
-                    
-
 """)
 
 class GraphicPage(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
     text_color_1 = Styles.light_1_color
+
+    def inputState(self):
+        formulas = Formulas(0,0,0,0)
+        formulas.state = self.ids.state.text
+    
 
 
     def goToData(self):

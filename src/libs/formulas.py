@@ -1,10 +1,11 @@
 from math import factorial
 
 class Formulas():
-    def __init__(self, Y: int, arrivalRate: float, serviceRate: float):
+    def __init__(self, Y: int, arrivalRate: float, serviceRate: float, state = 0):
         self.Y = Y
         self.arrivalRate = arrivalRate # lambda
         self.serviceRate = serviceRate # mu
+        self.state = state # state
         
         # backups for simulation
         self.backupArrivalRate = arrivalRate # backup lambda
@@ -21,6 +22,9 @@ class Formulas():
     def getServiceRate(self):
         return self.serviceRate
     
+    def getState(self):
+        return self.state
+    
     # SETTERS
     
     def setY(self, Y: int):
@@ -31,6 +35,9 @@ class Formulas():
     
     def setServiceRate(self, serviceRate: float):
         self.serviceRate = serviceRate
+    
+    def setState(self, state: int):
+        self.state = state
         
     # UTILS
     
