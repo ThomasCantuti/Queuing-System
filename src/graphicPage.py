@@ -2,9 +2,6 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from styles import Styles
 from libs.formulas import Formulas
-#from KivyMD.kivymd.app import MDApp
-#from kivy_garden.graph import Graph
-#from kivy.garden import 
 
 
 Builder.load_string("""
@@ -65,7 +62,7 @@ Builder.load_string("""
                     BoxLayout:
                         padding: [dp(20), dp(20)]
                         CTextInput:
-                            id: lambda
+                            id: arrival
                             hint_text: "lambda"
                         CTextInput:
                             id: mu
@@ -83,6 +80,7 @@ Builder.load_string("""
                             text: "Start"
                             size_hint_y: None
                             height: dp(50)
+                            on_press: root.inputStart()
                         Button:
                             id: reset
                             text: "Reset"
@@ -146,9 +144,16 @@ class GraphicPage(Screen):
     secondary_color = Styles.secondary_color
     text_color_1 = Styles.light_1_color
 
-    def inputState(self):
+    def inputStart(self):
         formulas = Formulas(0,0,0,0)
-        formulas.state = self.ids.state.text
+        formulas.arrivalRate = float(self.ids.arrival.text)
+        formulas.serviceRate = float(self.ids.mu.text)
+        formulas.Y = int(self.ids.y.text)
+        formulas.state = int(self.ids.state.text)
+
+        self.ids.Pk.text = str(Formulas.getProbabilityAtState(formulas, formulas.state))
+        self.ids.Py.text = str(Formulas.getProbabilityAtStateY(formulas))
+
     
 
 
