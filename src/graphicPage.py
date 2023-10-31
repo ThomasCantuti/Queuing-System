@@ -2,7 +2,9 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from styles import Styles
 from libs.formulas import Formulas
-from KivyMD.kivymd.app import MDApp
+#from KivyMD.kivymd.app import MDApp
+#from kivy_garden.graph import Graph
+#from kivy.garden import 
 
 
 Builder.load_string("""
