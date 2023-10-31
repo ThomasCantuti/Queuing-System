@@ -2,7 +2,8 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from styles import Styles
 from libs.formulas import Formulas
-from kivy.garden.matplot import FigureCanvasKivyAgg
+from KivyMD.kivymd.app import MDApp
+
 
 Builder.load_string("""
                     
