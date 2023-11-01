@@ -2,6 +2,7 @@ from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
 from styles import Styles
 from libs.formulas import Formulas
+from libs.graphs import Graphs
 
 
 Builder.load_string("""
@@ -87,6 +88,7 @@ Builder.load_string("""
                             text: "Reset"
                             size_hint_y: None
                             height: dp(50)
+                            on_press: root.resetValue()
                 # output
                 BoxLayout:
                     orientation: "vertical"
@@ -149,14 +151,20 @@ class GraphicPage(Screen):
         formulas.Y = int(self.ids.y.text)
         formulas.state = int(self.ids.state.text)
 
+        self.ids.Pk.text = str(round(Formulas.getProbabilityAtState(formulas, formulas.state), 2))
+        self.ids.Py.text = str(format(Formulas.getProbabilityAtStateY(formulas), ".2e"))
+        self.ids.Ls.text = str(round(Formulas.getServerLength(formulas), 2))
+        self.ids.Ws.text = str(round(Formulas.getServerWait(formulas), 2))
 
+        #graph = Graphs(30)
+        #graph.createGeneralGraph()
 
-
-        self.ids.Pk.text = str(Formulas.getProbabilityAtState(formulas, formulas.state))
-        self.ids.Py.text = str(Formulas.getProbabilityAtStateY(formulas))
-        self.ids.Ls.text = str(Formulas.getServerLength(formulas))
-        self.ids.Ws.text = str(Formulas.getServerWait(formulas))  
-
+    def resetValue(self):
+        #formulas = Formulas(0,0,0,0)
+        self.ids.Pk.text = "0"
+        self.ids.Py.text = "0"
+        self.ids.Ls.text = "0"
+        self.ids.Ws.text = "0"
 
     def goToData(self):
         self.manager.current = "dataPage"
