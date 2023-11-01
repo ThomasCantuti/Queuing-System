@@ -10,7 +10,7 @@ Builder.load_string("""
     font_size: 26
     color: root.text_color_1
     text_size: self.width, None
-    # size_hint_y: None
+    #size_hint_X: None
     anchor_x: "left"
     padding: [dp(20), dp(20)]
 
@@ -18,9 +18,16 @@ Builder.load_string("""
     font_name: "DMSans.ttf"
     font_size: 26
     color: root.text_color_1
-    text_size: self.width, None
     size_hint_x: None
     size: self.texture_size
+
+<TitleLabel>:
+    font_name: "DMSans.ttf"
+    font_size: 26
+    color: root.text_color_1
+    size_hint_x: None
+    size: self.texture_size
+    padding: [dp(20), dp(5)]
 
 <CTextInput>:
     padding: dp(15)
@@ -29,6 +36,9 @@ Builder.load_string("""
     multiline: False
 
 """)
+
+class TitleLabel(Label):
+    text_color_1 = Styles.light_1_color
 
 class CLabel(Label):
     text_color_1 = Styles.light_1_color

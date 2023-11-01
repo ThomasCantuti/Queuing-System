@@ -8,7 +8,8 @@ Builder.load_string("""
                     
 #: import CLabel CustomWidgets
 #: import TextParameter CustomWidgets
-#: import CTextInput CustomWidgets   
+#: import TitleLabel CustomWidgets
+#: import CTextInput CustomWidgets 
                     
 <GraphicPage>:
     name: "graphicPage"
@@ -95,35 +96,32 @@ Builder.load_string("""
                     # Pk
                     BoxLayout:
                         size_hint_x: None
-                        CLabel:
+                        TitleLabel:
                             text: "Pk: "
                         TextParameter:
                             id: Pk
-                            text: ""
                     # Py
                     BoxLayout:
                         size_hint_x: None
-                        CLabel:
+                        TitleLabel:
                             text: "Py: "
                         TextParameter:
                             id: Py
-                            text: ""
                     # Ls
                     BoxLayout:
                         size_hint_x: None
-                        CLabel:
+                        TitleLabel:
                             text: "Ls: "
                         TextParameter:
                             id: Ls
-                            text: ""
                     # Ws
                     BoxLayout:
                         size_hint_x: None
-                        CLabel:
+                        width: self.minimum_width
+                        TitleLabel:
                             text: "Ws: "
                         TextParameter:
                             id: Ws
-                            #text: "p"
             
             # Destra -> Grafico
             AnchorLayout:
@@ -151,10 +149,13 @@ class GraphicPage(Screen):
         formulas.Y = int(self.ids.y.text)
         formulas.state = int(self.ids.state.text)
 
+
+
+
         self.ids.Pk.text = str(Formulas.getProbabilityAtState(formulas, formulas.state))
         self.ids.Py.text = str(Formulas.getProbabilityAtStateY(formulas))
-
-    
+        self.ids.Ls.text = str(Formulas.getServerLength(formulas))
+        self.ids.Ws.text = str(Formulas.getServerWait(formulas))  
 
 
     def goToData(self):
