@@ -29,7 +29,7 @@ Builder.load_string("""
                         Rectangle:
                             pos: self.pos
                             size: self.size
-                            source: "back.png"
+                            source: "img/eye.png"
                     size_hint: None, None
                     size: dp(35), dp(35)
                     background_normal: ""

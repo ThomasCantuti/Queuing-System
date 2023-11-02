@@ -3,6 +3,7 @@ from kivy.uix.screenmanager import Screen
 from styles import Styles
 from libs.formulas import Formulas
 from libs.graphs import Graphs
+from libs.GraphWidgetScatter import GraphWidget
 
 
 Builder.load_string("""
@@ -38,7 +39,7 @@ Builder.load_string("""
                         Rectangle:
                             pos: self.pos
                             size: self.size
-                            source: "back.png"
+                            source: "img/eye.png"
                     size_hint: None, None
                     size: dp(35), dp(35)
                     background_normal: ""
@@ -126,16 +127,17 @@ Builder.load_string("""
                             id: Ws
             
             # Destra -> Grafico
-            AnchorLayout:
+            BoxLayout:
+                id: graph
                 anchor_x: "right"
-                #padding: [0,0,dp(30),0]
+                padding: [0,0,dp(20),0]
                 canvas.before:
                     #Color:
-                    #    rgba: root.bg_color
+                        #rgba: root.bg_color
                     Rectangle:
                         pos: self.pos
                         size: self.size
-                        source: "img/testGraph.jpg"
+                        #source: "img/testGraph.jpg"
             
 """)
 
@@ -158,6 +160,8 @@ class GraphicPage(Screen):
 
         #graph = Graphs(30)
         #graph.createGeneralGraph()
+        graph = GraphWidget()
+        self.ids.graph.add_widget(graph)
 
     def resetValue(self):
         #formulas = Formulas(0,0,0,0)
