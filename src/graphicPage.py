@@ -4,6 +4,7 @@ from styles import Styles
 from libs.formulas import Formulas
 from libs.graphs import Graphs
 from kivy.uix.image import AsyncImage
+import time
 
 
 Builder.load_string("""
@@ -138,7 +139,7 @@ Builder.load_string("""
                     id: img
                     pos: self.pos
                     size: self.size
-                    source: "img/testGraph.jpg"
+                    source: root.image_source.source
             
 """)
 
@@ -146,6 +147,7 @@ class GraphicPage(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
     text_color_1 = Styles.light_1_color
+    image_source = AsyncImage(source="img/testGraph.jpg")
 
     def inputStart(self):
         formulas = Formulas(0,0,0,0)
@@ -154,17 +156,30 @@ class GraphicPage(Screen):
         formulas.Y = int(self.ids.y.text)
         formulas.state = int(self.ids.state.text)
 
-        self.ids.Pk.text = str(round(Formulas.getProbabilityAtState(formulas, formulas.state), 2))
+        self.ids.Pk.text = str(format(Formulas.getProbabilityAtState(formulas, formulas.state), ".2e"))
         self.ids.Py.text = str(format(Formulas.getProbabilityAtStateY(formulas), ".2e"))
         self.ids.Ls.text = str(round(Formulas.getServerLength(formulas), 2))
         self.ids.Ws.text = str(round(Formulas.getServerWait(formulas), 2))
 
-        graph = Graphs(30)
+        self.ids.graph.remove_widget(self.image_source)
+        
+        input ={
+            "Y": int(self.ids.y.text),
+            "arrivalRate": float(self.ids.arrival.text),
+            "serviceRate": int(self.ids.mu.text)
+        }
+        graph = Graphs(input, 40)
         graph.createGeneralGraph()
-        #self.ids.img.
-        #graph = GraphWidget()
-        #self.ids.graph.add_widget(graph)
 
+        time.sleep(2)
+
+        #self.image_source = "img/testGraph.jpg"
+        self.image_source = AsyncImage(source="img/testGraph.jpg")
+        #self.image_source = AsyncImage(source=GraphicPage.image_source)
+        self.image_source.reload()
+        self.ids.graph.add_widget(self.image_source)
+
+    
     def resetValue(self):
         #formulas = Formulas(0,0,0,0)
         self.ids.Pk.text = "0"

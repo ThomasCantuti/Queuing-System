@@ -5,7 +5,7 @@ from libs.formulas import Formulas
 from styles import Styles
 
 class Graphs():
-    def __init__(self, input, xLength):        
+    def __init__(self, input, xLength):
         self.formulas = Formulas(input.get("Y"), 
                             input.get("arrivalRate"), 
                             input.get("serviceRate"))
