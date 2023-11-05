@@ -4,7 +4,6 @@ from styles import Styles
 from libs.formulas import Formulas
 from libs.graphs import Graphs
 from kivy.uix.image import AsyncImage
-import time
 
 
 Builder.load_string("""
@@ -147,9 +146,12 @@ class GraphicPage(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
     text_color_1 = Styles.light_1_color
-    image_source = AsyncImage(source="img/testGraph.jpg")
+    image_source = AsyncImage()
+    image_source.source = "img/testGraph.jpg"
 
     def inputStart(self):
+        self.ids.graph.remove_widget(self.image_source)
+
         formulas = Formulas(0,0,0,0)
         formulas.arrivalRate = float(self.ids.arrival.text)
         formulas.serviceRate = float(self.ids.mu.text)
@@ -160,8 +162,6 @@ class GraphicPage(Screen):
         self.ids.Py.text = str(format(Formulas.getProbabilityAtStateY(formulas), ".2e"))
         self.ids.Ls.text = str(round(Formulas.getServerLength(formulas), 2))
         self.ids.Ws.text = str(round(Formulas.getServerWait(formulas), 2))
-
-        self.ids.graph.remove_widget(self.image_source)
         
         input ={
             "Y": int(self.ids.y.text),
@@ -171,13 +171,8 @@ class GraphicPage(Screen):
         graph = Graphs(input, 40)
         graph.createGeneralGraph()
 
-        time.sleep(2)
-
-        #self.image_source = "img/testGraph.jpg"
-        self.image_source = AsyncImage(source="img/testGraph.jpg")
-        #self.image_source = AsyncImage(source=GraphicPage.image_source)
+        self.image_source.source = "img/testGraph.jpg"
         self.image_source.reload()
-        self.ids.graph.add_widget(self.image_source)
 
     
     def resetValue(self):
