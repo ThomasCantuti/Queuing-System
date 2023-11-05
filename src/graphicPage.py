@@ -3,7 +3,7 @@ from kivy.uix.screenmanager import Screen
 from styles import Styles
 from libs.formulas import Formulas
 from libs.graphs import Graphs
-from libs.GraphWidgetScatter import GraphWidget
+from kivy.uix.image import AsyncImage
 
 
 Builder.load_string("""
@@ -131,13 +131,14 @@ Builder.load_string("""
                 id: graph
                 anchor_x: "right"
                 padding: [0,0,dp(20),0]
-                canvas.before:
+                #canvas.before:
                     #Color:
                         #rgba: root.bg_color
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
-                        #source: "img/testGraph.jpg"
+                AsyncImage:
+                    id: img
+                    pos: self.pos
+                    size: self.size
+                    source: "img/testGraph.jpg"
             
 """)
 
@@ -158,10 +159,11 @@ class GraphicPage(Screen):
         self.ids.Ls.text = str(round(Formulas.getServerLength(formulas), 2))
         self.ids.Ws.text = str(round(Formulas.getServerWait(formulas), 2))
 
-        #graph = Graphs(30)
-        #graph.createGeneralGraph()
-        graph = GraphWidget()
-        self.ids.graph.add_widget(graph)
+        graph = Graphs(30)
+        graph.createGeneralGraph()
+        #self.ids.img.
+        #graph = GraphWidget()
+        #self.ids.graph.add_widget(graph)
 
     def resetValue(self):
         #formulas = Formulas(0,0,0,0)
