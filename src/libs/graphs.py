@@ -5,17 +5,13 @@ from libs.formulas import Formulas
 from styles import Styles
 
 class Graphs():
-    def __init__(self, xLength):        
-        input = {
-            "Y": 5,
-            "arrivalRate": 8,
-            "serviceRate": 18
-        }
-
-        self.xLength = xLength
+    def __init__(self, input, xLength):        
         self.formulas = Formulas(input.get("Y"), 
-                    input.get("arrivalRate"), 
-                    input.get("serviceRate"))
+                            input.get("arrivalRate"), 
+                            input.get("serviceRate"))
+        
+        self.xLength = xLength
+
         
     def getXLength(self):
         return self.xLength

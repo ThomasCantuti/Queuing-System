@@ -21,8 +21,19 @@ class Interface(ScreenManager):
 class QueuesystemApp(App):
     pass
 
-QueuesystemApp().run()
+# QueuesystemApp().run()
 
 # graficone
-# graphs = Graphs(40)
-# graphs.createGeneralGraph()
+
+input = {
+    "Y": 5,
+    "arrivalRate": 8,
+    "serviceRate": 18
+}
+
+graphs = Graphs(input, 40)
+graphs.createGeneralGraph()
+
+# input ={
+#     "Y": self.ids.Y
+# }
