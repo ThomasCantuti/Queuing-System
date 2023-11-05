@@ -22,7 +22,3 @@ class QueuesystemApp(App):
     pass
 
 QueuesystemApp().run()
-
-# graficone
-# graphs = Graphs(40)
-# graphs.createGeneralGraph()
