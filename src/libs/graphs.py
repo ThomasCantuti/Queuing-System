@@ -37,7 +37,7 @@ class Graphs():
             ax.spines[i].set_color(Styles.light_2_color)
 
         # display points
-        for i in range(0, self.xLength * int(self.formulas.getServiceRate())):
+        for i in range(0, int(self.formulas.getServiceRate())):
             self.formulas.setArrivalRate(i)
             # print("A:", self.formulas.getTrafficIntensity(), "=> Ls:", self.formulas.getServerLength())
             
@@ -52,3 +52,36 @@ class Graphs():
         plt.ylabel("Ls", fontweight='bold', color=Styles.light_2_color)
         plt.savefig("img/A_Ls_Graph.jpg")
         #plt.show()
+    
+    def createExerciseGraph(self):
+        # graph surrounding bg color
+        plt.figure(facecolor=Styles.secondary_color)
+
+        ax = plt.axes()
+
+        # graph bg color
+        ax.set_facecolor(Styles.secondary_color)
+
+        # graph axis values color
+        ax.tick_params(axis='x', colors=Styles.light_2_color)
+        ax.tick_params(axis='y', colors=Styles.light_2_color)
+
+        # graph borders color
+        for i in ['bottom', 'top', 'left' , 'right']:
+            ax.spines[i].set_color(Styles.light_2_color)
+
+        # display points
+        for k in range(0, self.formulas.getY()):
+            # print("A:", self.formulas.getTrafficIntensity(), "=> Ls:", self.formulas.getServerLength())
+            
+            x = k
+            y = self.formulas.getProbabilityAtState(k)
+
+            # plt.plot(x, y, 'ro-')
+            plt.scatter(x, y, color=Styles.light_1_color)
+
+        plt.title("States' Probability Graph",  fontweight='bold', color=Styles.light_1_color)
+        plt.xlabel("K", fontweight='bold', color=Styles.light_2_color)
+        plt.ylabel("Pk", fontweight='bold', color=Styles.light_2_color)
+        plt.savefig("img/k_Pk_Graph.jpg")
+        plt.show()

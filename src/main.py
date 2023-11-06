@@ -21,4 +21,15 @@ class Interface(ScreenManager):
 class QueuesystemApp(App):
     pass
 
-QueuesystemApp().run()
+# QueuesystemApp().run()
+
+input = {
+    "Y": 6,
+    "arrivalRate": 8,
+    "serviceRate": 18,
+}
+
+g = Graphs(input, 40)
+
+g.createGeneralGraph()
+g.createExerciseGraph()
