@@ -90,6 +90,15 @@ Builder.load_string("""
                             size_hint_y: None
                             height: dp(50)
                             on_press: root.resetValue()
+                    BoxLayout:
+                        padding: [dp(20), dp(20)]
+                        Button:
+                            id: toggle
+                            text: "Switch graph"
+                            size_hint_y: None
+                            height: dp(50)
+                            on_press: root.switchGraph()
+
                 # output
                 BoxLayout:
                     orientation: "vertical"
@@ -131,11 +140,7 @@ Builder.load_string("""
                 id: graph
                 anchor_x: "right"
                 padding: [0,0,dp(20),0]
-                #canvas.before:
-                    #Color:
-                        #rgba: root.bg_color
                 AsyncImage:
-                    id: img
                     pos: self.pos
                     size: self.size
                     source: root.image_source.source
@@ -147,7 +152,7 @@ class GraphicPage(Screen):
     secondary_color = Styles.secondary_color
     text_color_1 = Styles.light_1_color
     image_source = AsyncImage()
-    image_source.source = "img/testGraph.jpg"
+    image_source.source = "img/Ls_A_Graph.jpg"
 
     def inputStart(self):
         self.ids.graph.remove_widget(self.image_source)
@@ -171,7 +176,7 @@ class GraphicPage(Screen):
         graph = Graphs(input, 40)
         graph.createGeneralGraph()
 
-        self.image_source.source = "img/testGraph.jpg"
+        self.image_source.source = "img/Ls_A_Graph.jpg"
         self.image_source.reload()
 
     
@@ -181,6 +186,11 @@ class GraphicPage(Screen):
         self.ids.Py.text = "0"
         self.ids.Ls.text = "0"
         self.ids.Ws.text = "0"
+    
+    def switchGraph(self):
+        pass
+        # cambaire nome a image_source in grafico richiesto
+        # chiamare funzione input_start
 
     def goToData(self):
         self.manager.current = "dataPage"

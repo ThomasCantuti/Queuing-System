@@ -50,5 +50,5 @@ class Graphs():
         plt.title("General Graph",  fontweight='bold', color=Styles.light_1_color)
         plt.xlabel("A", fontweight='bold', color=Styles.light_2_color)
         plt.ylabel("Ls", fontweight='bold', color=Styles.light_2_color)
-        plt.savefig("img/testGraph.jpg")
+        plt.savefig("img/Ls_A_Graph.jpg")
         #plt.show()
