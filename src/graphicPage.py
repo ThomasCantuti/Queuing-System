@@ -166,7 +166,7 @@ class GraphicPage(Screen):
         input ={
             "Y": int(self.ids.y.text),
             "arrivalRate": float(self.ids.arrival.text),
-            "serviceRate": int(self.ids.mu.text)
+            "serviceRate": float(self.ids.mu.text)
         }
         graph = Graphs(input, 40)
         graph.createGeneralGraph()
