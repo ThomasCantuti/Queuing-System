@@ -152,7 +152,7 @@ class GraphicPage(Screen):
     secondary_color = Styles.secondary_color
     text_color_1 = Styles.light_1_color
     image_source = AsyncImage()
-    image_source.source = "img/Ls_A_Graph.jpg"
+    image_source.source = "img/A_Ls_Graph.jpg"
 
     def inputStart(self):
         self.ids.graph.remove_widget(self.image_source)
@@ -176,7 +176,7 @@ class GraphicPage(Screen):
         graph = Graphs(input, 40)
         graph.createGeneralGraph()
 
-        self.image_source.source = "img/Ls_A_Graph.jpg"
+        self.image_source.source = "img/A_Ls_Graph.jpg"
         self.image_source.reload()
 
     
