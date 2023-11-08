@@ -178,10 +178,13 @@ class GraphicPage(Screen):
         }
 
         graph_A_Ls = Graphs(input, 40)
-        graph_A_Ls.createGeneralGraph()
+        graph_A_Ls.create_A_Ls_Graph()
 
         graph_k_Pk = Graphs(input, 40)
-        graph_k_Pk.createExerciseGraph()
+        graph_k_Pk.create_k_Pk_Graph()
+
+        graph_A_Ws = Graphs(input, 40)
+        graph_A_Ws.create_A_Ws_Graph()
 
         self.image_source.source = "img/A_Ls_Graph.jpg"
         self.image_source.reload()
@@ -201,11 +204,17 @@ class GraphicPage(Screen):
         if GraphicPage.count_switch == 0:
             self.image_source.source = "img/A_Ls_Graph.jpg"
             self.image_source.reload()
+            GraphicPage.count_switch += 1
             
         elif GraphicPage.count_switch == 1:
             self.image_source.source = "img/k_Pk_Graph.jpg"
             self.image_source.reload()
-            GraphicPage.count_switch = -1
+            GraphicPage.count_switch += 1
+        
+        elif GraphicPage.count_switch == 2:
+            self.image_source.source = "img/A_Ws_Graph.jpg"
+            self.image_source.reload()
+            GraphicPage.count_switch -= 2
 
 
     def goToData(self):

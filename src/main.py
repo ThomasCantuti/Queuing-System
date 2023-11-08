@@ -21,9 +21,9 @@ class Interface(ScreenManager):
 class QueuesystemApp(App):
     pass
 
-# QueuesystemApp().run()
+QueuesystemApp().run()
 
-
+'''
 input = {
     "Y": 6,
     "arrivalRate": 8,
@@ -35,3 +35,4 @@ g = Graphs(input, 40)
 g.create_A_Ls_Graph()
 g.create_A_Ws_Graph()
 g.create_k_Pk_Graph()
+'''
