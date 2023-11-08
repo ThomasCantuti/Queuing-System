@@ -17,7 +17,7 @@ Builder.load_string("""
 <TextParameter>:
     font_name: "DMSans.ttf"
     font_size: 26
-    color: root.text_color_1
+    color: root.text_color_2
     size_hint_x: None
     size: self.texture_size
 
@@ -44,7 +44,7 @@ class CLabel(Label):
     text_color_1 = Styles.light_1_color
 
 class TextParameter(Label):
-    text_color_1 = Styles.light_1_color
+    text_color_2 = Styles.light_2_color
 
 class CTextInput(TextInput):
     pass

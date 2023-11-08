@@ -76,6 +76,9 @@ Builder.load_string("""
                         CTextInput:
                             id: state
                             hint_text: "K"
+                        CTextInput:
+                            id: xLength
+                            hint_text: "xLength"
                     BoxLayout:
                         padding: [dp(20), dp(20)]
                         Button:
@@ -177,16 +180,16 @@ class GraphicPage(Screen):
             "state": int(self.ids.state.text)
         }
 
-        graph_A_Ls = Graphs(input, 40)
+        graph_A_Ls = Graphs(input, int(self.ids.xLength.text))
         graph_A_Ls.create_A_Ls_Graph()
 
-        graph_k_Pk = Graphs(input, 40)
+        graph_k_Pk = Graphs(input, int(self.ids.xLength.text))
         graph_k_Pk.create_k_Pk_Graph()
 
-        graph_A_Ws = Graphs(input, 40)
+        graph_A_Ws = Graphs(input, int(self.ids.xLength.text))
         graph_A_Ws.create_A_Ws_Graph()
 
-        graph_A_Py = Graphs(input, 40)
+        graph_A_Py = Graphs(input, int(self.ids.xLength.text))
         graph_A_Py.create_A_Py_Graph()
 
         self.switchGraph()
@@ -198,6 +201,7 @@ class GraphicPage(Screen):
         self.ids.mu.text = ""
         self.ids.y.text = ""
         self.ids.state.text = ""
+        self.ids.xLength.text = ""
         self.ids.Pk.text = "0"
         self.ids.Py.text = "0"
         self.ids.Ls.text = "0"
