@@ -186,6 +186,9 @@ class GraphicPage(Screen):
         graph_A_Ws = Graphs(input, 40)
         graph_A_Ws.create_A_Ws_Graph()
 
+        graph_A_Py = Graphs(input, 40)
+        graph_A_Py.create_A_Py_Graph()
+
         self.switchGraph()
 
     
@@ -214,6 +217,11 @@ class GraphicPage(Screen):
         
         elif self.count_switch == 2:
             self.image_source.source = "img/A_Ws_Graph.jpg"
+            self.image_source.reload()
+            self.count_switch += 1
+        
+        elif self.count_switch == 3:
+            self.image_source.source = "img/A_Py_Graph.jpg"
             self.image_source.reload()
             self.count_switch = 0
 
