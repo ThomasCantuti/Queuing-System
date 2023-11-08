@@ -153,6 +153,7 @@ class GraphicPage(Screen):
     text_color_1 = Styles.light_1_color
     image_source = AsyncImage()
     image_source.source = "img/A_Ls_Graph.jpg"
+    count_switch = 0
 
     def inputStart(self):
         self.ids.graph.remove_widget(self.image_source)
@@ -171,10 +172,15 @@ class GraphicPage(Screen):
         input ={
             "Y": int(self.ids.y.text),
             "arrivalRate": float(self.ids.arrival.text),
-            "serviceRate": float(self.ids.mu.text)
+            "serviceRate": float(self.ids.mu.text),
+            "state": int(self.ids.state.text)
         }
-        graph = Graphs(input, 40)
-        graph.createGeneralGraph()
+
+        graph_A_Ls = Graphs(input, 40)
+        graph_A_Ls.createGeneralGraph()
+
+        graph_k_Pk = Graphs(input, 40)
+        graph_k_Pk.createExerciseGraph()
 
         self.image_source.source = "img/A_Ls_Graph.jpg"
         self.image_source.reload()
@@ -188,9 +194,18 @@ class GraphicPage(Screen):
         self.ids.Ws.text = "0"
     
     def switchGraph(self):
-        pass
-        # cambaire nome a image_source in grafico richiesto
-        # chiamare funzione input_start
+
+        GraphicPage.count_switch += 1
+
+        if GraphicPage.count_switch == 0:
+            self.image_source.source = "img/A_Ls_Graph.jpg"
+            self.image_source.reload()
+            
+        elif GraphicPage.count_switch == 1:
+            self.image_source.source = "img/k_Pk_Graph.jpg"
+            self.image_source.reload()
+            GraphicPage.count_switch = -1
+
 
     def goToData(self):
         self.manager.current = "dataPage"

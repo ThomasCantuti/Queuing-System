@@ -51,7 +51,7 @@ class Graphs():
         plt.xlabel("A", fontweight='bold', color=Styles.light_2_color)
         plt.ylabel("Ls", fontweight='bold', color=Styles.light_2_color)
         plt.savefig("img/A_Ls_Graph.jpg")
-        #plt.show()
+        # plt.show()
     
     def createExerciseGraph(self):
         # graph surrounding bg color
@@ -84,4 +84,4 @@ class Graphs():
         plt.xlabel("K", fontweight='bold', color=Styles.light_2_color)
         plt.ylabel("Pk", fontweight='bold', color=Styles.light_2_color)
         plt.savefig("img/k_Pk_Graph.jpg")
-        plt.show()
+        # plt.show()
