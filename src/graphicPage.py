@@ -156,7 +156,7 @@ class GraphicPage(Screen):
     count_switch = 0
 
     def inputStart(self):
-        GraphicPage.count_switch = 0
+        self.count_switch = 0
         self.ids.graph.remove_widget(self.image_source)
 
         formulas = Formulas(0,0,0,0)
@@ -186,12 +186,15 @@ class GraphicPage(Screen):
         graph_A_Ws = Graphs(input, 40)
         graph_A_Ws.create_A_Ws_Graph()
 
-        self.image_source.source = "img/A_Ls_Graph.jpg"
-        self.image_source.reload()
+        self.switchGraph()
 
     
     def resetValue(self):
-        #formulas = Formulas(0,0,0,0)
+        formulas = Formulas(0,0,0,0)
+        self.ids.arrival.text = ""
+        self.ids.mu.text = ""
+        self.ids.y.text = ""
+        self.ids.state.text = ""
         self.ids.Pk.text = "0"
         self.ids.Py.text = "0"
         self.ids.Ls.text = "0"
@@ -199,22 +202,20 @@ class GraphicPage(Screen):
     
     def switchGraph(self):
 
-        GraphicPage.count_switch += 1
-
-        if GraphicPage.count_switch == 0:
+        if self.count_switch == 0:
             self.image_source.source = "img/A_Ls_Graph.jpg"
             self.image_source.reload()
-            GraphicPage.count_switch += 1
+            self.count_switch += 1
             
-        elif GraphicPage.count_switch == 1:
+        elif self.count_switch == 1:
             self.image_source.source = "img/k_Pk_Graph.jpg"
             self.image_source.reload()
-            GraphicPage.count_switch += 1
+            self.count_switch += 1
         
-        elif GraphicPage.count_switch == 2:
+        elif self.count_switch == 2:
             self.image_source.source = "img/A_Ws_Graph.jpg"
             self.image_source.reload()
-            GraphicPage.count_switch -= 2
+            self.count_switch = 0
 
 
     def goToData(self):
