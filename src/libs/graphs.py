@@ -37,7 +37,7 @@ class Graphs():
             ax.spines[i].set_color(Styles.light_2_color)
 
         # display points
-        for i in range(0, int(self.formulas.getServiceRate())):
+        for i in range(0, self.xLength * int(self.formulas.getServiceRate())):
             self.formulas.setArrivalRate(i)
             # print("A:", self.formulas.getTrafficIntensity(), "=> Ls:", self.formulas.getServerLength())
             

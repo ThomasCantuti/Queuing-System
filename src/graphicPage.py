@@ -156,6 +156,7 @@ class GraphicPage(Screen):
     count_switch = 0
 
     def inputStart(self):
+        GraphicPage.count_switch = 0
         self.ids.graph.remove_widget(self.image_source)
 
         formulas = Formulas(0,0,0,0)
@@ -164,7 +165,7 @@ class GraphicPage(Screen):
         formulas.Y = int(self.ids.y.text)
         formulas.state = int(self.ids.state.text)
 
-        self.ids.Pk.text = str(format(Formulas.getProbabilityAtState(formulas, formulas.state), ".2e"))
+        self.ids.Pk.text = str(round(Formulas.getProbabilityAtState(formulas, formulas.state), 4))
         self.ids.Py.text = str(format(Formulas.getProbabilityAtStateY(formulas), ".2e"))
         self.ids.Ls.text = str(round(Formulas.getServerLength(formulas), 2))
         self.ids.Ws.text = str(round(Formulas.getServerWait(formulas), 2))
