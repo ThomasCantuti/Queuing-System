@@ -4,6 +4,7 @@ from styles import Styles
 from kivy.graphics.vertex_instructions import Line
 from kivy.graphics.vertex_instructions import Rectangle
 from kivy.graphics.context_instructions import Color
+from kivy.properties import Clock
 from kivy.metrics import dp
 from kivy.uix.image import AsyncImage
 from kivy.animation import Animation
@@ -61,15 +62,18 @@ class DataPage(Screen):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
+        self.rect_size = dp(50)
+        self.pipe_size = dp(50)
         with self.canvas:
             Color(0,1,0,1)
-            Line(points = (100, 100, 400, 500), width = 2)
-            Line(circle = (400,200,80), width = 2)
-            Line(rectangle = (700,500,150,100), width = 2)
-            self.rect = Rectangle(pos = (700, 200), size = (150, 100))
+            self.pipe = Line(points = [self.x, self.center_y, self.right, self.center_y], width = 3)
+            #Line(circle = (400,200,80), width = 2)
+            #Line(rectangle = (700,500,150,100), width = 2)
+            #self.rect = Rectangle(pos = self.center, size = (150, 100))
+        #Clock.schedule_interval(self.update, 1)
     
     def on_click (self):
-        x, y = self.rect.pos
+        #x, y = self.rect.pos
         w, h = self.rect.size
         inc = dp(10)
 
@@ -78,7 +82,20 @@ class DataPage(Screen):
             inc = diff
 
         x += inc
-        self.rect.pos = (x, y)
+        #self.rect.pos = (x, y)
+    
+    def on_size (self, *args):
+        #self.rect.pos = (self.center_x - self.rect_size / 2,
+        #                 self.center_y - self.rect_size / 2)
+        self.pipe.points = (self.x, 
+                            self.center_y - self.pipe_size / 2,
+                            self.right / 2, 
+                            self.center_y - self.pipe_size / 2)
+    
+    def update (self, dt):
+        #x, y = self.rect.pos
+        #self.rect.pos = (x + 10, y)
+        pass
 
     def goToGraphic(self):
         self.manager.current = "graphicPage"
