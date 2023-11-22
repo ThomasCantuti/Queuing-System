@@ -47,37 +47,32 @@ Builder.load_string("""
         
         # parte inferiore
         BoxLayout:
-            ScrollView:
-                id: system
-                do_scroll_y: True
+            id: system
+            do_scroll_y: True
 
 """)
 
 class DataPage(Screen):
     bg_color = Styles.primary_color
     secondary_color = Styles.secondary_color
-    pkt_img = AsyncImage()
-    pkt_img.source = "img/pkt.png"
-    #pkt_img.size_hint = (None, None)
-    #pkt_img.size = (dp(50), dp(50))
-    pkt_img.size_hint = (0.2, 0.2)
+    pkt_img = AsyncImage(source = "img/pkt.png",
+                         size_hint = (None, None),
+                         size = (dp(20), dp(20)),
+                         pos_hint = {'center_x': 0.5, 'center_y': 0.5})
     
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.rect_size = dp(50)
-        self.pipe_size = dp(50)
-        #self.pkt_size = dp(50)
+        self.ids.system.add_widget(self.pkt_img)
         with self.canvas:
             Color(0,1,0,1)
-            self.pipe = Line(points = [self.x, self.center_y, self.right, self.center_y], width = 3)
+            #self.pipe = Line(points = [self.x, self.center_y, self.right, self.center_y], width = 3)
             #Line(circle = (400,200,80), width = 2)
             #Line(rectangle = (700,500,150,100), width = 2)
             #self.rect = Rectangle(pos = self.center, size = (150, 100))
-            self.pkt_img.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
-            self.ids.system.add_widget(self.pkt_img)
+            #self.ids.system.add_widget(self.pkt_img)
         #Clock.schedule_interval(self.update, 1)
-    
+    '''
     def on_click (self):
         #x, y = self.rect.pos
         w, h = self.rect.size
@@ -104,7 +99,8 @@ class DataPage(Screen):
         #x, y = self.rect.pos
         #self.rect.pos = (x + 10, y)
         pass
-
+    '''
+    
     def goToGraphic(self):
         self.manager.current = "graphicPage"
         
