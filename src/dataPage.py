@@ -10,6 +10,7 @@ from kivy.uix.image import AsyncImage
 from kivy.animation import Animation
 from kivy.uix.image import AsyncImage
 
+
 Builder.load_string("""
 <DataPage>:
     name: "dataPage"
@@ -47,8 +48,8 @@ Builder.load_string("""
         
         # parte inferiore
         BoxLayout:
+            orientation: "vertical"
             id: system
-            do_scroll_y: True
 
 """)
 
@@ -57,21 +58,37 @@ class DataPage(Screen):
     secondary_color = Styles.secondary_color
     pkt_img = AsyncImage(source = "img/pkt.png",
                          size_hint = (None, None),
-                         size = (dp(20), dp(20)),
-                         pos_hint = {'center_x': 0.5, 'center_y': 0.5})
+                         size = (dp(30), dp(30)),
+                         pos_hint = {'center_x': 0, 'center_y': 1})
+    '''server_img = AsyncImage(source = "img/smartphone.png",
+                            size_hint = (None, None),
+                            size = (dp(30), dp(30)),
+                            pos_hint = {'center_x': 0.5, 'center_y': 0.5})'''
     
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.ids.system.add_widget(self.pkt_img)
-        with self.canvas:
-            Color(0,1,0,1)
-            #self.pipe = Line(points = [self.x, self.center_y, self.right, self.center_y], width = 3)
-            #Line(circle = (400,200,80), width = 2)
-            #Line(rectangle = (700,500,150,100), width = 2)
-            #self.rect = Rectangle(pos = self.center, size = (150, 100))
-            #self.ids.system.add_widget(self.pkt_img)
-        #Clock.schedule_interval(self.update, 1)
+        
+        '''for i in range(5):
+            server_img = AsyncImage(source = "img/smartphone.png",
+                                    size_hint = (None, None),
+                                    size = (dp(30), dp(30)),
+                                    pos_hint = {'center_x': 0.5, 'center_y': 0.5})
+            self.ids.system.add_widget(server_img)
+        '''
+        self.pkt_img_vx = dp(5)
+        #self.pkt_img_vy = dp(5)
+        Clock.schedule_interval(self.pkt_move, 1/60)
+
+    def pkt_move (self, dt, *args):
+        x, y = self.pkt_img.pos
+        x += self.pkt_img_vx
+        #y += self.pkt_img_vy
+        if self.pkt_img.pos[0] != self.center_x:
+            self.pkt_img.pos = (x , y)
+        
+
     '''
     def on_click (self):
         #x, y = self.rect.pos
@@ -95,12 +112,9 @@ class DataPage(Screen):
         #self.pkt_img.pos = (self.center_x - self.pkt_img.size[0] / 2,
         #                    self.center_y - self.pkt_img.size[1] / 2)
     
-    def update (self, dt):
-        #x, y = self.rect.pos
-        #self.rect.pos = (x + 10, y)
-        pass
-    '''
     
+    '''
+
     def goToGraphic(self):
         self.manager.current = "graphicPage"
         
