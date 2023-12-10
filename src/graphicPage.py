@@ -31,20 +31,6 @@ Builder.load_string("""
                 text: "Queue System M/M/Y/Y Graphic"
                 font_name: "DMSans.ttf"
                 font_size: "20sp"
-            AnchorLayout:
-                anchor_x: "right"
-                padding: [0,0,dp(30),0]
-                Button:
-                    canvas.before:
-                        Rectangle:
-                            pos: self.pos
-                            size: self.size
-                            source: "img/eye.png"
-                    size_hint: None, None
-                    size: dp(35), dp(35)
-                    background_normal: ""
-                    background_color: 0,0,0,0
-                    on_press: root.goToData()
         
         # Dati + grafico
         BoxLayout:
@@ -230,5 +216,5 @@ class GraphicPage(Screen):
             self.count_switch = 0
 
 
-    def goToData(self):
-        self.manager.current = "dataPage"
+    #def goToData(self):
+    #    self.manager.current = "dataPage"
